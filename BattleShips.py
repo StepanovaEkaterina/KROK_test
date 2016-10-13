@@ -1,18 +1,33 @@
 count = 10
 ships = [1,2,3,4]
-while count >= 0:
-	temp = 0
-	str = input()
-	for each in str:
-		if each == 'X':
-			temp += 1
-		if temp > 0 and each == '.':
-			ships[temp-1] -= 1;
-		elif temp>4:
-			print ('NO')
-			return 
-	for each in ships:
-		if each < 0:
-			print ('NO')
-			return	
-			
+field = []
+positions = []
+while True:
+	try:
+		field.append(input())
+	except EOFError:
+		break
+
+def Check(field):	
+	for line in range(10):
+		for row in range(10):
+			if field[line][row] == 'X':
+				if line - 1 >= 0 and row - 1 >= 0 and field[line - 1][row - 1] == 'X':
+					print ('kek')
+					print ('NO')
+					return 0
+				elif line - 1 >= 0 and row + 1 < 10 and field[line - 1][row + 1] == 'X':
+					print ('kek')
+					print ('NO')
+					return 0
+				elif line + 1 < 10 and row - 1 >= 0 and field[line + 1][row - 1] == 'X':
+					print ('kek')
+					print ('NO')
+					return 0
+				elif line + 1 < 10 and row + 1 < 10 and field[line + 1][row + 1] == 'X':
+					print ('kek')
+					print ('NO')
+					return 0
+				else:
+					return 1
+print (Check(field))
